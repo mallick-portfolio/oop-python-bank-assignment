@@ -2,6 +2,7 @@ import uuid
 
 # TODO 7 no point not complete
 
+
 class User:
     def __init__(self, name, email, password, address) -> None:
         self.name = name
@@ -9,6 +10,13 @@ class User:
         self.password = password
         self.address = address
         self.admin_secret = "12345"
+        self.is_admin = False
+
+    def check_admin(self, admin_secret):
+        if self.admin_secret == admin_secret:
+            return True
+        else:
+            return False
 
 
 class Account(User):
