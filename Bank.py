@@ -9,6 +9,7 @@ class Bank:
         self.__accounts = []
         pass
 
+    # add new account
     def add_account(self, account):
         if isinstance(account, Account):
             self.__accounts.append(account)
@@ -16,10 +17,13 @@ class Bank:
         else:
             print('Your account is not valid. Please provide valid account')
 
+    # check account is available or not
     def check_account(self, email, password):
         for account in self.__accounts:
             if account.email == email and account.password == password:
                 return account
+
+    # delete user account
 
     def delete_account(self, name, email):
         flag = False
@@ -35,15 +39,23 @@ class Bank:
             print("Your information is not correct. Please provide valid information")
             return False
 
+    # see all user account
+    def see_all_account(self):
+        print()
+        print("====== All account in this bank =======")
+        if len(self.__accounts):
+            for account in self.__accounts:
+                print(
+                    f"Holder name: {account.name}. Email: {account.email}. Address {account.address}. Account no: {account.account_no}")
+        else:
+            print("Currently the bank has no account.")
+
 
 sonali_bank = Bank("Sonali Bank")
 tamal = Account("Tamal", "tamal@gmail.com", "12345", "dhaka", "saving")
 amit = Account("amit", "amit@gmail.com", "12345", "dhaka", "saving")
 sonali_bank.add_account(tamal)
 sonali_bank.add_account(amit)
-
-
-
 
 
 # replica system
@@ -131,4 +143,6 @@ while True:
                 sonali_bank.delete_account(holder_name, holder_email)
 
             elif ch == 3:
+                sonali_bank.see_all_account()
+            elif ch == 4:
                 pass
