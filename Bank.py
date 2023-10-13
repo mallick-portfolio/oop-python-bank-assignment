@@ -2,10 +2,10 @@ from User import User, Account
 
 
 class Bank:
-    isBanrupt = False
-    is_loan_feature = True
 
     def __init__(self, name) -> None:
+        self.isBanrupt = False
+        self.is_loan_feature = True
         self.name = name
         self.__accounts = []
         pass
@@ -22,6 +22,12 @@ class Bank:
     def check_account(self, email, password):
         for account in self.__accounts:
             if account.email == email and account.password == password:
+                return account
+
+    # check account with name and email is available or not
+    def check_account_with_name_and_email(self, email, name):
+        for account in self.__accounts:
+            if account.email == email and account.name == name:
                 return account
 
     # delete user account
@@ -180,4 +186,51 @@ while True:
                     else:
                         sonali_bank.is_loan_feature = True
             elif ch == 7:
-                pass
+                current_account = None
+        else:
+            print()
+            print("======== Customer Option =======")
+            print("Option 1: Check balance: ")
+            print("Option 2: Deposit balance: ")
+            print("Option 3: Withdraw balance: ")
+            print("Option 4: Transaction  history: ")
+            print("Option 5: Transfer account to another account: ")
+            print("Option 6: Loan request: ")
+            print("Option 7: Exit: ")
+            print("========= ******* ==========")
+            print()
+            ch = int(input("Enter the option: "))
+            if ch == 1:
+                current_account.available_balance()
+            elif ch == 2:
+                amount = int(input("Enter the amount you want to deposit: "))
+                current_account.deposit(amount)
+            elif ch == 3:
+                if sonali_bank.isBanrupt:
+                    print(
+                        "Sorry to say the bank is already banrupt. You are not able to withdraw money")
+                else:
+                    amount = int(input("Enter your withdraw amount: "))
+                    current_account.withdraw(amount)
+            elif ch == 4:
+                current_account.transition_history()
+            elif ch == 5:
+                holder_name = input("Enter acceptence account holder name: ")
+                holder_email = input("Enter acceptence account holder email: ")
+                ac = sonali_bank.check_account_with_name_and_email(
+                    holder_email, holder_name)
+
+                if ac is not None:
+                    amount = int(input("Enter amount you want to transfer: "))
+                    current_account.transfer_amount(amount, ac)
+                else:
+                    print("Account does not exist")
+            elif ch == 6:
+                if sonali_bank.isBanrupt:
+                    print("Sorry to say our bank is banrupt. You are not able to Loan")
+                else:
+                    amount = int(input("Enter amount you want to loan: "))
+                    current_account.take_loan(amount)
+
+            elif ch == 7:
+                current_account = None
