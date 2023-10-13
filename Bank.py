@@ -3,6 +3,7 @@ from User import User, Account
 
 class Bank:
     isBanrupt = False
+    is_loan_feature = True
 
     def __init__(self, name) -> None:
         self.name = name
@@ -161,4 +162,22 @@ while True:
                 loan = sonali_bank.total_loan()
                 print(f"Total loan from this bank is {loan}")
             elif ch == 6:
+                print()
+                print("laodn feature", sonali_bank.is_loan_feature)
+                print()
+                if sonali_bank.is_loan_feature:
+                    change_loan_feature = input(
+                        "Are you want to allow loan feature(y/n): ")
+                    if change_loan_feature == 'y':
+                        sonali_bank.is_loan_feature = True
+                    else:
+                        sonali_bank.is_loan_feature = False
+                else:
+                    confirm = input(
+                        "Are you sure want to stop loan feature(y/n): ")
+                    if confirm == 'y':
+                        sonali_bank.is_loan_feature = False
+                    else:
+                        sonali_bank.is_loan_feature = True
+            elif ch == 7:
                 pass
