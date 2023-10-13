@@ -21,6 +21,20 @@ class Bank:
             if account.email == email and account.password == password:
                 return account
 
+    def delete_account(self, name, email):
+        flag = False
+        for account in self.__accounts:
+            if account.name == name and account.email == email:
+                self.__accounts.remove(account)
+                flag = True
+                break
+        if flag:
+            print("Account removed successfull!!!")
+            return True
+        else:
+            print("Your information is not correct. Please provide valid information")
+            return False
+
 
 sonali_bank = Bank("Sonali Bank")
 tamal = Account("Tamal", "tamal@gmail.com", "12345", "dhaka", "saving")
@@ -29,6 +43,10 @@ sonali_bank.add_account(tamal)
 sonali_bank.add_account(amit)
 
 
+
+
+
+# replica system
 current_account = None
 while True:
     if current_account is None:
@@ -84,14 +102,17 @@ while True:
 
     else:
         if current_account.is_admin:
+            print()
             print("======== Admin Option =======")
-            print("Option 1: create an account: ")
-            print("Option 2: sell all user accounts: ")
-            print("Option 3: check the total available balance of the bank: ")
-            print("Option 4: check the total loan amount: ")
-            print("Option 5: Turn (on/off) loan feature: ")
-            print("Option 6: exit: ")
+            print("Option 1: Create an account: ")
+            print("Option 2: Delete an account: ")
+            print("Option 3: See all user accounts: ")
+            print("Option 4: Check the total available balance of the bank: ")
+            print("Option 5: Check the total loan amount: ")
+            print("Option 6: Turn (on/off) loan feature: ")
+            print("Option 7: Exit: ")
             print("========= ******* ==========")
+            print()
             ch = int(input("Enter the option: "))
             if ch == 1:
                 name = input("Enter account holder name: ")
@@ -107,6 +128,7 @@ while True:
             elif ch == 2:
                 holder_name = input("Please enter the holder name: ")
                 holder_email = input("Please enter the holder email: ")
-                
+                sonali_bank.delete_account(holder_name, holder_email)
+
             elif ch == 3:
                 pass
