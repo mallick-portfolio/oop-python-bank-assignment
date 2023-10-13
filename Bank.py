@@ -24,7 +24,6 @@ class Bank:
                 return account
 
     # delete user account
-
     def delete_account(self, name, email):
         flag = False
         for account in self.__accounts:
@@ -49,6 +48,20 @@ class Bank:
                     f"Holder name: {account.name}. Email: {account.email}. Address {account.address}. Account no: {account.account_no}")
         else:
             print("Currently the bank has no account.")
+
+    # available balance in the bank
+    def available_bank_balance(self):
+        total = 0
+        for account in self.__accounts:
+            total += account.balance
+        return total
+
+    # user total loan from this bank
+    def total_loan(self):
+        total = 0
+        for account in self.__accounts:
+            total += account.loan_amount
+        return total
 
 
 sonali_bank = Bank("Sonali Bank")
@@ -106,9 +119,6 @@ while True:
                 current_account = account
 
 
-# Can delete any user account                                                              5
-# Can see all user accounts list                                                            10
-# Can check the total available balance of the bank.                            5
 # Can check the total loan amount.                                                       5
 # Can on or off the loan feature of the bank.
 
@@ -145,4 +155,10 @@ while True:
             elif ch == 3:
                 sonali_bank.see_all_account()
             elif ch == 4:
+                balance = sonali_bank.available_bank_balance()
+                print(f"Current balance in bank is {balance}")
+            elif ch == 5:
+                loan = sonali_bank.total_loan()
+                print(f"Total loan from this bank is {loan}")
+            elif ch == 6:
                 pass

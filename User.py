@@ -27,6 +27,7 @@ class Account(User):
         self.transaction_history = []
         self.possible_loan = 2
         self.max_loan_amount = 100000
+        self.loan_amount = 0
         super().__init__(name, email, password, address)
 
     @property
@@ -69,6 +70,7 @@ class Account(User):
             print(
                 f"Sorry to say. You are not able to loan more then {self.max_loan_amount}")
         else:
+            self.loan_amount += amount
             self.balance -= amount
             history = {
                 "type": "loan",
