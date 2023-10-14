@@ -1,3 +1,6 @@
+# the admin account name = Tamal, email = tamal@gmail.com and password = 12345
+# akta simple user ace jar name = Amit, email = amit@gmail.com and passowrd = 12345
+# admin hisabe login korte hole seccret dao lagbe secret hosce = 12345
 from User import User, Account
 
 
@@ -73,7 +76,7 @@ class Bank:
 
 sonali_bank = Bank("Sonali Bank")
 tamal = Account("Tamal", "tamal@gmail.com", "12345", "dhaka", "saving")
-amit = Account("amit", "amit@gmail.com", "12345", "dhaka", "saving")
+amit = Account("Amit", "amit@gmail.com", "12345", "dhaka", "saving")
 sonali_bank.add_account(tamal)
 sonali_bank.add_account(amit)
 
