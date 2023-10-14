@@ -139,7 +139,8 @@ while True:
             print("Option 4: Check the total available balance of the bank: ")
             print("Option 5: Check the total loan amount: ")
             print("Option 6: Turn (on/off) loan feature: ")
-            print("Option 7: Exit: ")
+            print("Option 7: Set bank as banrupt: ")
+            print("Option 8: Exit: ")
             print("========= ******* ==========")
             print()
             ch = int(input("Enter the option: "))
@@ -150,10 +151,10 @@ while True:
                 address = input("Enter account holder address: ")
                 account_type = input(
                     "Enter account holder account type(savings/current): ")
-                ac = sonali_bank.check_account(email, password)
-                if ac is not None:
-                    sonali_bank.add_account(ac)
-                    print("Account create successfully!!!")
+                ac = Account(name, email, password, address, account_type)
+                sonali_bank.add_account(ac)
+                print("Account create successfully!!!")
+
             elif ch == 2:
                 holder_name = input("Please enter the holder name: ")
                 holder_email = input("Please enter the holder email: ")
@@ -191,6 +192,16 @@ while True:
                         sonali_bank.is_loan_feature = False
                         print("Loan feature stop.")
             elif ch == 7:
+                check = input(
+                    "Are you sure want to make the bank as banrupt(y/n): ")
+                if check == 'y':
+                    sonali_bank.isBanrupt = True
+                    print("Bank is now banrupt")
+                elif check == 'n':
+                    sonali_bank.isBanrupt = False
+                    print("Your bank is running.")
+
+            elif ch == 8:
                 current_account = None
         else:
             print()
