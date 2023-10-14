@@ -173,18 +173,23 @@ while True:
                 print()
                 if sonali_bank.is_loan_feature:
                     change_loan_feature = input(
-                        "Are you want to allow loan feature(y/n): ")
+                        "Are you agree to stop loan option(y/n): ")
                     if change_loan_feature == 'y':
-                        sonali_bank.is_loan_feature = True
-                    else:
                         sonali_bank.is_loan_feature = False
+                        print("Loan feature stop successfully")
+                    else:
+                        sonali_bank.is_loan_feature = True
+                        print("Loan feature again allow successfully")
+
                 else:
                     confirm = input(
-                        "Are you sure want to stop loan feature(y/n): ")
+                        "Are you want to continue loan feature(y/n): ")
                     if confirm == 'y':
-                        sonali_bank.is_loan_feature = False
-                    else:
                         sonali_bank.is_loan_feature = True
+                        print("Loan feature start again successfully")
+                    else:
+                        sonali_bank.is_loan_feature = False
+                        print("Loan feature stop.")
             elif ch == 7:
                 current_account = None
         else:
@@ -228,6 +233,8 @@ while True:
             elif ch == 6:
                 if sonali_bank.isBanrupt:
                     print("Sorry to say our bank is banrupt. You are not able to Loan")
+                elif not sonali_bank.is_loan_feature:
+                    print("Our loan feature is off now. You can try later")
                 else:
                     amount = int(input("Enter amount you want to loan: "))
                     current_account.take_loan(amount)
